@@ -2,6 +2,7 @@ import connectToMongo from "./db.js";
 import express from "express";
 import authRouter from "./routes/auth.js";
 import noteRouter from "./routes/notes.js";
+import cors from 'cors'
 const app = express();
 const localhost = "127.0.0.1";
 const port = 5000;
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
   res.send("Hello user!\nWelcome to Note Ninja...");
 });
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/notes", noteRouter);

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const mongoURI = "mongodb://localhost:27017/iNotebook";
+const mongoURI = "mongodb://localhost:27017/notebook";
 
 const options = {
   family: 4,

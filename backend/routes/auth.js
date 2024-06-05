@@ -26,7 +26,9 @@ router.post(
     // const user = User(req.body);
     // user.save();
     // res.send(req.body);
+    let success = false;
     const result = validationResult(req);
+
     if (result.isEmpty()) {
       try {
         let user = await User.findOne({ email: req.body.email });
@@ -34,7 +36,7 @@ router.post(
         if (user) {
           return res
             .status(400)
-            .json({ error: "Sorry a user with this email already exists" });
+            .json({ success, error: "Sorry a user with this email already exists" });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -50,6 +52,7 @@ router.post(
           },
         };
         const authToken = JWT.sign(data, JWT_Secret);
+        success = true;
 
         // return res.send(req.body);
         res.status(200).json({ authToken });
@@ -76,7 +79,9 @@ router.post(
     // const user = User(req.body);
     // user.save();
     // res.send(req.body);
+    let success = false;
     const result = validationResult(req);
+
     if (result.isEmpty()) {
       const { email, password } = req.body;
       try {
@@ -85,7 +90,7 @@ router.post(
         if (!user) {
           res
             .status(400)
-            .json({ message: "Invalid Credentials! Please try again" });
+            .json({ success, message: "Invalid Credentials! Please try again" });
         }
 
         const comparePassword = await bcrypt.compare(password, user.password);
@@ -93,7 +98,7 @@ router.post(
         if (!comparePassword) {
           res
             .status(400)
-            .json({ message: "Invalid Credentials! Please try again" });
+            .json({ success, message: "Invalid Credentials! Please try again" });
         }
 
         const data = {
@@ -102,8 +107,9 @@ router.post(
           },
         };
         const authToken = JWT.sign(data, JWT_Secret);
+        success = true;
 
-        res.status(200).json({ authToken });
+        res.status(200).json({ success, authToken });
       } catch (error) {
         console.error(error.message);
         res
