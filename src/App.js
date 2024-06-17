@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <NoteState>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Navbar />
           <Alert alert={alert} />
           <div className="container my-3">
