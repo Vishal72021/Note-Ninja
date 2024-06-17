@@ -12,11 +12,11 @@ const JWT_Secret = "jwt-secret";
 router.post(
   "/createUser",
   [
-    body("Name", "Name should be atleast 3 characters long").isLength({
+    body("Name", "Name should be at least 3 characters long").isLength({
       min: 3,
     }),
     body("email", "Enter a valid E-mail ID").isEmail(),
-    body("password", "Password should be atleast 6 characters long").isLength({
+    body("password", "Password should be at least 6 characters long").isLength({
       min: 6,
     }),
   ],

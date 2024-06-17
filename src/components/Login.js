@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
@@ -24,9 +24,10 @@ const Login = () => {
 
     if (json.success) {
       localStorage.setItem("token", json.authToken);
+      props.showAlert("Login successful", "success");
       navigate("/");
     } else {
-      alert("Login failed");
+      props.showAlert("Login failed", "danger");
     }
   };
 
@@ -35,7 +36,8 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="container mt-3">
+      <h2>Login to your NoteNinja account</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
