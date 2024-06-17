@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/Note-Ninja/static/css/main.31d6cfe0.css",
+    "main.js": "/Note-Ninja/static/js/main.a743dcb1.js",
+    "index.html": "/Note-Ninja/index.html",
+    "main.a743dcb1.js.map": "/Note-Ninja/static/js/main.a743dcb1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.a743dcb1.js"
+  ]
+}
